@@ -1,17 +1,16 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
-import logo from './logo.svg';
+import { ChangeEvent, useEffect, useState } from 'react';
 import './App.css';
-import { DataType, productsApi } from './api/productsApi';
+import { ProductType, productsApi } from './api/productsApi';
 
 const App = () => {
 
-    const [data, setData] = useState<DataType[]>([])
+    const [data, setData] = useState<ProductType[]>([])
     const [id, setId] = useState<string>('')
     const [id1, setId1] = useState<string>('')
 
     const getData = async () => {
         try {
-            const res = await productsApi.readAll()
+            const res = await productsApi.getProducts()
             setData(res.data)
         }
         catch (e) {
@@ -21,7 +20,7 @@ const App = () => {
 
     const postData = async () => {
         try {
-            const res = await productsApi.testPost()
+            const res = await productsApi.setProduct()
             setData(res.data)
         }
         catch (e) {
@@ -31,7 +30,7 @@ const App = () => {
 
     const deleteItem = async () => {
         try {
-            const res = await productsApi.deleteTest(Number(id))
+            const res = await productsApi.deleteProduct(Number(id))
             setData(res.data)
         }
         catch(e) {
@@ -44,7 +43,7 @@ const App = () => {
         try {
             const item = data.find(el => el.id === Number(id1))
             if(item) {
-                const res = await productsApi.updateItem(Number(id1))
+                const res = await productsApi.updateProduct(Number(id1))
                 setData(res.data)
             }
         }

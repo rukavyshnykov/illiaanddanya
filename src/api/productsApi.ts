@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL: 'https://07b3-188-163-100-229.ngrok-free.app/api/products/',
+    baseURL: 'https://lion-neat-immensely.ngrok-free.app/api/products/',
     headers: {
         'ngrok-skip-browser-warning': true,
         withCredentials: true
@@ -9,21 +9,21 @@ const instance = axios.create({
 })
 
 export const productsApi = {
-    readAll: () => {
-        return instance.get<DataType[]>('readAllProducts')
+    getProducts: () => {
+        return instance.get<ProductType[]>('readAllProducts')
     },
-    testPost: () => {
-        return instance.post<DataType[]>('createProduct', { name: 'CHECK', amount: 5 })
+    setProduct: () => {
+        return instance.post<ProductType[]>('createProduct', { name: 'CHECK', amount: 5 })
     },
-    deleteTest: (id: number) => {
-        return instance.delete<DataType[]>(`deleteById/${id}`)
+    deleteProduct: (id: number) => {
+        return instance.delete<ProductType[]>(`deleteById/${id}`)
     },
-    updateItem: (id: number) => {
-        return instance.put<DataType[]>(`updateProduct/${id}`, { id, name: 'KUASDFSDF', amount: 123 })
+    updateProduct: (id: number) => {
+        return instance.put<ProductType[]>(`updateProduct/${id}`, { id, name: 'KUASDFSDF', amount: 123 })
     }
 }
 
-export type DataType = {
+export type ProductType = {
     id: number,
     name: string,
     amount: number
