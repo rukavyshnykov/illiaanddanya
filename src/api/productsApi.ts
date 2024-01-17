@@ -1,14 +1,14 @@
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL: 'https://c1c6-188-163-100-229.ngrok-free.app/api/product/',
+    baseURL: 'https://07b3-188-163-100-229.ngrok-free.app/api/products/',
     headers: {
         'ngrok-skip-browser-warning': true,
         withCredentials: true
     }
 })
 
-export const testApi = {
+export const productsApi = {
     readAll: () => {
         return instance.get<DataType[]>('readAllProducts')
     },

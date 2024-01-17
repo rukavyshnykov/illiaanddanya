@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { DataType, testApi } from './api/testApi';
+import { DataType, productsApi } from './api/productsApi';
 
 const App = () => {
 
@@ -11,7 +11,7 @@ const App = () => {
 
     const getData = async () => {
         try {
-            const res = await testApi.readAll()
+            const res = await productsApi.readAll()
             setData(res.data)
         }
         catch (e) {
@@ -21,7 +21,7 @@ const App = () => {
 
     const postData = async () => {
         try {
-            const res = await testApi.testPost()
+            const res = await productsApi.testPost()
             setData(res.data)
         }
         catch (e) {
@@ -31,7 +31,7 @@ const App = () => {
 
     const deleteItem = async () => {
         try {
-            const res = await testApi.deleteTest(Number(id))
+            const res = await productsApi.deleteTest(Number(id))
             setData(res.data)
         }
         catch(e) {
@@ -44,7 +44,7 @@ const App = () => {
         try {
             const item = data.find(el => el.id === Number(id1))
             if(item) {
-                const res = await testApi.updateItem(Number(id1))
+                const res = await productsApi.updateItem(Number(id1))
                 setData(res.data)
             }
         }
