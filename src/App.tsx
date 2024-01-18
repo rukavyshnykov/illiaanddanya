@@ -1,79 +1,36 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import './App.css';
 import { ProductType, productsApi } from './api/productsApi';
-import { categoriesApi } from './api/categoriesApi';
+import { CategoryType, categoriesApi } from './api/categoriesApi';
 import { BrowserRouter, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { router } from './app/routerSettings';
+import { Container, CssBaseline } from '@mui/material';
+import Header from './widgets/Header/Header';
 
 const App = () => {
+    const [sec, setSec] = useState<CategoryType[]>([])
 
-    const [data, setData] = useState<ProductType[]>([])
-    const [id, setId] = useState<string>('')
-    const [id1, setId1] = useState<string>('')
-
-    const getData = async () => {
+    const getSections = async () => {
         try {
-            const res = await productsApi.getProducts()
-            setData(res.data)
+            const res = await categoriesApi.getCategories()
+            setSec(res.data)
         }
-        catch (e) {
-            console.log(e)
-        }
+        catch(e) {}
     }
-
-    const postData = async () => {
-        try {
-            const res = await productsApi.setProduct()
-            setData(res.data)
-        }
-        catch (e) {
-            console.log(e)
-        }
-    }
-
-    const deleteItem = async () => {
-        try {
-            const res = await productsApi.deleteProduct(Number(id))
-            setData(res.data)
-        }
-        catch(e) {
-            console.log(e)
-        }
-        
-    }
-
-    const updateItem = async () => {
-        try {
-            const item = data.find(el => el.id === Number(id1))
-            if(item) {
-                const res = await productsApi.updateProduct(Number(id1))
-                setData(res.data)
-            }
-        }
-        catch(e) {
-            console.log(e)
-        }
-    }
-
-    const changeId = (e: ChangeEvent<HTMLInputElement>) => {
-        setId(e.target.value)
-    }
-
-    const changeId1 = (e: ChangeEvent<HTMLInputElement>) => {
-        setId1(e.target.value)
-    }
-
     
-
     useEffect(() => {
-
+        getSections()
     }, [])
 
-    
+
 
     return (
         <div className="App">
-            <RouterProvider router={router} />
+            <CssBaseline />
+            <Container>
+                <Header sections={sec} />
+                <RouterProvider router={router} />
+            </Container>
         </div>
     );
 }
