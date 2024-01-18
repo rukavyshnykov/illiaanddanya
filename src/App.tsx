@@ -27,7 +27,7 @@ const App = () => {
     return (
         <div className="App">
             <CssBaseline />
-            <Container>
+            <Container maxWidth={'xl'}>
                 <Header sections={sec} />
                 <RouterProvider router={router} />
             </Container>
