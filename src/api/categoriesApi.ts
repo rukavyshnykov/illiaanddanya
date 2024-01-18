@@ -12,8 +12,8 @@ export const categoriesApi = {
     getCategories: () => {
         return instance.get<CategoryType[]>('readAllCategories')
     },
-    setCategory: () => {
-        return instance.post<CategoryType[]>('createCategory', { name: 'CHECK' })
+    setCategory: (name: string) => {
+        return instance.post<CategoryType[]>('createCategory', { name })
     },
     deleteCategory: (id: number) => {
         return instance.delete<CategoryType[]>(`deleteCategory/${id}`)

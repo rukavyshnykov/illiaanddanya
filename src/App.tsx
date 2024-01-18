@@ -1,6 +1,9 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import './App.css';
 import { ProductType, productsApi } from './api/productsApi';
+import { categoriesApi } from './api/categoriesApi';
+import { BrowserRouter, RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { router } from './app/routerSettings';
 
 const App = () => {
 
@@ -63,22 +66,14 @@ const App = () => {
     
 
     useEffect(() => {
-        // postData() 
-        getData()
+
     }, [])
 
-
+    
 
     return (
         <div className="App">
-            <input value={id} onChange={changeId}/>
-            <button onClick={deleteItem}>DELETE</button>
-            <input value={id1} onChange={changeId1}/>
-            <button onClick={updateItem}>UPDATE</button>
-            <ul>
-                {data.map(el => <li key={el.id}>{el.id}{el.name}</li>)}
-            </ul>
-
+            <RouterProvider router={router} />
         </div>
     );
 }
