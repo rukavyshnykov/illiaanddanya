@@ -3,7 +3,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
-import Link from '@mui/material/Link';
+import { Link } from 'react-router-dom';
 import { CategoryType } from '../../api/categoriesApi';
 import logo from '../../static/logo.png'
 
@@ -31,16 +31,14 @@ export default function Header({ sections }: HeaderProps) {
                 sx={{ justifyContent: 'space-between', overflowX: 'auto' }}
             >
                 {sections.map((section) => {
-                    const categoryHref = window.location.origin + '/' + section.name.toLowerCase()
+                    const categoryHref = '/' + section.name.toLowerCase()
 
                     return (
                         <Link
                             color="inherit"
-                            noWrap
                             key={section.id}
-                            variant="body2"
-                            href={categoryHref}
-                            sx={{ p: 1, flexShrink: 0 }}
+                            to={categoryHref}
+                            style={{ padding: 1, flexShrink: 0 }}
                         >
                             {section.name}
                         </Link>
