@@ -17,7 +17,7 @@ export const categoriesApi = {
     },
     deleteCategory: (id: number) => {
         return instance.delete<CategoryType[]>(`deleteCategory/${id}`)
-    },
+    }
 }
 
 export type CategoryType = {
