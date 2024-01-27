@@ -1,4 +1,4 @@
-import { Box, Grid } from "@mui/material"
+import { Grid } from "@mui/material"
 import { ProductType } from "../../api/productsApi"
 import { ProductCard } from "../../entities/ProductCard/ProductCard"
 
@@ -10,11 +10,13 @@ export const ProductsList = ({ products }: ProductsList) => {
 
 
     return (
-        <Grid container spacing={2} sx={{marginTop: 'unset', width: '100%', marginLeft: 'unset'}}>
+        <Grid container spacing={4} sx={{marginTop: 'unset', width: '100%', marginLeft: 'unset'}}>
         {
             products.map(({ name, imgHref, id }: ProductType) => {
                 return (
-                    <ProductCard key={id} name={name} imgHref={imgHref} />
+                    <Grid item xs={3}>
+                        <ProductCard key={id} name={name} imgHref={imgHref} />
+                    </Grid>
                 )
             })
         }
